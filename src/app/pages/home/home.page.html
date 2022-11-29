@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <p class="centrar">{{this.usuarios.tipo_usuario}}</p>
+    <ion-button slot="end" (click)="logout()"><ion-icon name="chevron-forward-circle-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorfondo">
+  <div>
+    <ion-card>
+      <ion-card-title class="centrar">Bienvenido {{this.usuarios.tipo_usuario}}</ion-card-title>
+      <ion-card-title class="centrar">{{this.usuarios.nombre}} {{this.usuarios.ap_paterno}}</ion-card-title>
+      <p class="centrar">¿Como se encuentra?</p>
+      <img src="../../../assets/img/descarga.png" alt="smile" width="40%">
+
+    </ion-card>
+  </div>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+
+        <ion-tab-button tab="administrador" *ngIf="this.usuarios.tipo_usuario == 'administrador'">
+        <ion-icon name="file-tray-stacked-outline"></ion-icon>
+        <ion-label>Administrar Usuarios</ion-label>
+        
+        </ion-tab-button>
+        <!-- Para generar clases -->
+        <ion-tab-button tab="asignaturas" *ngIf="this.usuarios.tipo_usuario == 'administrador'">
+          <ion-icon name="library-outline"></ion-icon>
+          <ion-label>Crear clase</ion-label>
+          <ion-badge>{{cantidadClass}}</ion-badge>
+        </ion-tab-button>
+
+        <ion-tab-button tab="iniciarclase" *ngIf="this.usuarios.tipo_usuario == 'docente'">
+          <ion-icon name="library-outline"></ion-icon>
+          <ion-label>Iniciar clase</ion-label>
+          
+        </ion-tab-button>
+
+        <ion-tab-button tab="perfil/{{this.usuarios.id}}">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="miscursos" *ngIf="this.usuarios.tipo_usuario == 'alumno'">
+          <ion-icon name="library-outline"></ion-icon>
+          <ion-label>Mis cursos</ion-label>
+          
+        </ion-tab-button>
+      <!-- <ion-tab-button tab="qrcode" *ngIf="KEY_PERSONAS.tipo_usuario == 'docente'">
+        <ion-icon name="file-tray-stacked-outline"></ion-icon>
+        <ion-label>Mis asignaturas</ion-label>
+      </ion-tab-button> -->
+
+      <!-- <ion-tab-button tab="registroasignatura" *ngIf="KEY_PERSONAS.tipo_usuario == 'administrador'">
+        <ion-icon name="file-tray-stacked-outline"></ion-icon>
+        <ion-label>Asignaturas</ion-label>
+      </ion-tab-button> -->
+
+      
+      
+      <!-- <ion-tab-button tab="perfil/{{KEY_PERSONAS.rut}}">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-tab-button> -->
+
+    </ion-tab-bar>
+  </ion-tabs>
+
+</ion-content>

@@ -1,0 +1,60 @@
+
+<ion-content>
+  <h1 class="centrar">Administrar asignaturas</h1>
+  <form [formGroup]="clase" (ngSubmit)="crearClase()">
+    <ion-card>
+      <ion-input hidden formControlName="id" [disabled]="auxiliar"></ion-input>
+      <ion-item>
+        
+        <ion-label position="stacked">Codigo Clase</ion-label>
+        <ion-input TRIM type="text" placeholder="Ingrese codigo" formControlName="cod_clase"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Nombre clase</ion-label>
+        <ion-input type="text" placeholder="Ingrese nombre clase " formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select placeholder="Modalidad" formControlName="horario">
+          <ion-select-option *ngFor="let jornada of horario">{{jornada.tipo_horario}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Sigla de la asignatura</ion-label>
+        <ion-input TRIM type="text" placeholder="Ingrese sigla" formControlName="sigla_asignatura"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Semestre</ion-label>
+        <ion-input TRIM type="number" placeholder="ingrese semestre" formControlName="semestre"></ion-input>
+      </ion-item>
+      <div formGroupName="usuario">
+        <ion-item>
+          <ion-label position="stacked">Personas</ion-label>
+          <ion-select formControlName="nombre" id="nombre" type="text"  placeholder="Ingrese docente..." >
+            <ion-select-option  *ngFor="let u of docentes" value="{{u.nombre}} {{u.ap_paterno}} " >{{u.nombre}} {{u.ap_paterno}} </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      
+      <ion-button expand="full" type="submit">Crear Clase</ion-button>
+      <ion-button expand="full" (click)="modificarClase()">Modificar</ion-button>
+      <ion-button expand="full" (click)="limpiar()">Limpiar</ion-button>
+    </ion-card>
+  </form>
+
+  <h1 class="centrar">Lista de clases</h1>
+  <div> 
+    <ion-list *ngFor="let clase of clases">
+      <ion-card class="centrar">
+        <p><b>Codigo de la clase:</b> {{clase.cod_clase}}</p> 
+        <p><b>Nombre de la clase:</b> {{clase.nombre}}</p>
+        <p><b>Sigla asignatura:</b>  {{clase.sigla_asignatura}}</p> 
+        <p><b>Semestre:</b> {{clase.semestre}}</p> 
+        <p><b>Docente:</b> {{clase.usuario}}</p>
+        <p><b>Horario:</b> {{clase.horario}}</p>
+        <ion-button expand="full" color="warning" (click)="buscarClase(clase.id)">Buscar</ion-button>
+        <ion-button expand="full"color="danger" (click)="eliminarClase(clase.id)">Eliminar</ion-button>     <p> </p> 
+    </ion-card>
+    </ion-list>
+  </div>
+
+</ion-content>

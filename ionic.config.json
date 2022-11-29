@@ -1,0 +1,7 @@
+{
+  "name": "unidad_3_fire",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

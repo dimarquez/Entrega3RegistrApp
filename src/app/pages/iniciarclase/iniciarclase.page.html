@@ -1,0 +1,48 @@
+<ion-content>
+  <div class="fondo">
+    <ion-card>
+    <ngx-qrcode [elementType]="elementType" [value]="asistencia.value.cod_asist"></ngx-qrcode>
+    <ion-input placeholder="Ingrese valor para el QR" [(ngModel)]="asistencia.value.cod_asist" disabled="true"></ion-input>
+
+    <!-- <div formGroupName="usuario">
+      <ion-item>
+        <ion-label position="stacked">Personas</ion-label>
+        <ion-select formControlName="nombre" id="nombre" type="text"  placeholder="Ingrese docente..." >
+          <ion-select-option  *ngFor="let u of docentes" value="{{u.nombre}} {{u.ap_paterno}} " >{{u.nombre}} {{u.ap_paterno}} </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div> -->
+
+
+
+    <!-- <ion-select placeholder="tipo de usuario">
+      <ion-select-option *ngFor="let d of clases">{{d.cod_clase}}</ion-select-option>
+    </ion-select> --> 
+  <ion-card-content>
+  <ion-input [(ngModel)]="value" disabled="true"></ion-input>
+  <ion-button  expand="full" (click)="generarCodigo()">Iniciar clase</ion-button>
+<!--   <ion-input placeholder="Ingrese valor para el QR" [(ngModel)]="value" disabled="true"></ion-input> -->
+<!--   <ion-button expand="full" (click)="generarCodigo()">Iniciar clase</ion-button> -->
+  </ion-card-content>  
+  </ion-card>
+  </div>
+
+  <h1 class="centrar">Clase en curso:</h1>
+  <div *ngIf="asistencias.length != 0; else elseBlock">
+    <ion-list *ngFor="let a of asistencias">
+      <ion-card>
+        <ion-card-header class="centrar"> 
+          <ion-card-title>Nombre de la clase:</ion-card-title>
+          <ion-card-subtitle>Codigo de la clase: {{a.cod_asist}}</ion-card-subtitle>        
+        </ion-card-header>
+        <ion-card-content>      
+          <!-- <ion-button  expand="full" slot="end" color="warning" (click)="buscar(a.cod_asist)">Buscar</ion-button> -->
+          <!-- <ion-button  expand="full" slot="end" color="danger" (click)="eliminar(a.cod_asist)">Eliminar</ion-button> -->
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+  <ng-template #elseBlock>
+    <p>No existen asignaturas</p>
+  </ng-template>
+</ion-content>
